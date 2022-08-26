@@ -45,7 +45,7 @@ RUN echo "*** Installing Compiler Explorer ***" \
     && npm run webpack
 
 RUN echo "*** Install libs ***" \
-    && sh /install_fmt.sh "${DEB_COMPILERS}"
+    && sh /install_fmt.sh "${FMT_VERSION}"
 
 ADD cpp.properties /compiler-explorer/etc/config/c++.local.properties
 
