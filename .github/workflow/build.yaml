@@ -1,0 +1,11 @@
+name: Docker Build Compiler Explorer
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Dockerfile
+      run: docker build . --file Dockerfile -t docker-compiler-explorer
