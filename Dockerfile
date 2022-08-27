@@ -5,6 +5,14 @@ LABEL maintainer="Stephan Kantelberg <stephan.kantelberg@zuehlke.com>"
 ARG DEB_COMPILERS="g++-9 g++-10 g++-11"
 ARG EXTRA_CLANG_COMPILERS="11 12 13 14 15"
 ARG FMT_VERSION="8.1.1 9.0.0"
+ARG SML_VERSION="1.1.5"
+ARG CATCH2_VERSION="v2.13.9 v3.1.0"
+ARG CTRE_VERSION="v3.7"
+ARG EXPECTED_VERSION="v0.6.2"
+ARG GOOGLETEST_VERSION="v1.12.0"
+ARG HFSM2_VERSION="2.2.1"
+ARG JSON_VERSION="v3.11.2"
+ARG SPDLOG_VERSION="v1.10.0"
 
 EXPOSE 10240
 
@@ -19,7 +27,7 @@ RUN echo "*** Installing compiler required packages ***" \
        software-properties-common
 
 ADD install_compilers.sh /install_compilers.sh
-ADD install_fmt.sh /install_fmt.sh
+ADD install_libraries.py /install_libraries.py
 
 RUN echo "*** Installing C++ Compilers ***" \
     && chmod +x /install_compilers.sh \
@@ -35,6 +43,7 @@ RUN echo "*** Installing Compiler Explorer ***" \
        nodejs \
        make \
        git \
+       python3 \
     && apt-get autoremove --purge -y \
     && apt-get autoclean -y \
     && rm -rf /var/cache/apt/* /tmp/* \
@@ -45,7 +54,24 @@ RUN echo "*** Installing Compiler Explorer ***" \
     && npm run webpack
 
 RUN echo "*** Install libs ***" \
-    && sh /install_fmt.sh "${FMT_VERSION}"
+    && echo "Installing FMT" \
+    && sh python3 /install_libraries.py -n fmt -u https://github.com/fmtlib/fmt.git -v ${FMT_VERSION} \
+    && echo "Installing Boost SML" \
+    && sh python3 /install_libraries.py -n sml -u https://github.com/boost-ext/sml.git -v ${SML_VERSION} \
+    && echo "Installing Catch2" \
+    && sh python3 /install_libraries.py -n catch2 -u https://github.com/catchorg/Catch2.git -v ${CATCH2_VERSION} \
+    && echo "Installing CTRE" \
+    && sh python3 /install_libraries.py -n ctre -u https://github.com/hanickadot/compile-time-regular-expressions.git -v ${CTRE_VERSION} \
+    && echo "Installing expected_lite" \
+    && sh python3 /install_libraries.py -n expected_lite -u https://github.com/martinmoene/expected-lite.git -v ${EXPECTED_VERSION} \
+    && echo "Installing Googletest" \
+    && sh python3 /install_libraries.py -n googletest -u https://github.com/google/googletest.git -v ${GOOGLETEST_VERSION} \
+    && echo "Installing HFSM2" \
+    && sh python3 /install_libraries.py -n hfsm2 -u https://github.com/andrew-gresyk/HFSM2.git -v ${HFSM2_VERSION} \
+    && echo "Installing nlohmann-json" \
+    && sh python3 /install_libraries.py -n nlohmann_json -u https://github.com/nlohmann/json.git -v ${JSON_VERSION} \
+    && echo "Installing spdlog" \
+    && sh python3 /install_libraries.py -n spdlog -u https://github.com/gabime/spdlog.git -v ${SPDLOG_VERSION}
 
 ADD cpp.properties /compiler-explorer/etc/config/c++.local.properties
 

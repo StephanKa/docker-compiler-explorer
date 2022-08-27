@@ -2,7 +2,7 @@
 
 [![Docker Build Compiler Explorer](https://github.com/StephanKa/docker-compiler-explorer/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/StephanKa/docker-compiler-explorer/actions/workflows/build.yaml)
 
-## Compileres
+## Compilers
 
 ### GCC
 | Version |
