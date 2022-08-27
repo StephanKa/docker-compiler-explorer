@@ -55,23 +55,23 @@ RUN echo "*** Installing Compiler Explorer ***" \
 
 RUN echo "*** Install libs ***" \
     && echo "Installing FMT" \
-    && sh python3 /install_libraries.py -n fmt -u https://github.com/fmtlib/fmt.git -v ${FMT_VERSION} \
+    && python3 /install_libraries.py -n fmt -u https://github.com/fmtlib/fmt.git -v ${FMT_VERSION} \
     && echo "Installing Boost SML" \
-    && sh python3 /install_libraries.py -n sml -u https://github.com/boost-ext/sml.git -v ${SML_VERSION} \
+    && python3 /install_libraries.py -n sml -u https://github.com/boost-ext/sml.git -v ${SML_VERSION} \
     && echo "Installing Catch2" \
-    && sh python3 /install_libraries.py -n catch2 -u https://github.com/catchorg/Catch2.git -v ${CATCH2_VERSION} \
+    && python3 /install_libraries.py -n catch2 -u https://github.com/catchorg/Catch2.git -v ${CATCH2_VERSION} \
     && echo "Installing CTRE" \
-    && sh python3 /install_libraries.py -n ctre -u https://github.com/hanickadot/compile-time-regular-expressions.git -v ${CTRE_VERSION} \
+    && python3 /install_libraries.py -n ctre -u https://github.com/hanickadot/compile-time-regular-expressions.git -v ${CTRE_VERSION} \
     && echo "Installing expected_lite" \
-    && sh python3 /install_libraries.py -n expected_lite -u https://github.com/martinmoene/expected-lite.git -v ${EXPECTED_VERSION} \
+    && python3 /install_libraries.py -n expected_lite -u https://github.com/martinmoene/expected-lite.git -v ${EXPECTED_VERSION} \
     && echo "Installing Googletest" \
-    && sh python3 /install_libraries.py -n googletest -u https://github.com/google/googletest.git -v ${GOOGLETEST_VERSION} \
+    && python3 /install_libraries.py -n googletest -u https://github.com/google/googletest.git -v ${GOOGLETEST_VERSION} \
     && echo "Installing HFSM2" \
-    && sh python3 /install_libraries.py -n hfsm2 -u https://github.com/andrew-gresyk/HFSM2.git -v ${HFSM2_VERSION} \
+    && python3 /install_libraries.py -n hfsm2 -u https://github.com/andrew-gresyk/HFSM2.git -v ${HFSM2_VERSION} \
     && echo "Installing nlohmann-json" \
-    && sh python3 /install_libraries.py -n nlohmann_json -u https://github.com/nlohmann/json.git -v ${JSON_VERSION} \
+    && python3 /install_libraries.py -n nlohmann_json -u https://github.com/nlohmann/json.git -v ${JSON_VERSION} \
     && echo "Installing spdlog" \
-    && sh python3 /install_libraries.py -n spdlog -u https://github.com/gabime/spdlog.git -v ${SPDLOG_VERSION}
+    && python3 /install_libraries.py -n spdlog -u https://github.com/gabime/spdlog.git -v ${SPDLOG_VERSION}
 
 ADD cpp.properties /compiler-explorer/etc/config/c++.local.properties
 
