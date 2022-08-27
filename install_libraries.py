@@ -21,11 +21,11 @@ if __name__ == '__main__':
     if not os.path.exists(BASE_PATH):
         os.mkdir(BASE_PATH)
 
-    if os.path.exists(f"{BASE_PATH}/{LIB_PATH}"):
+    if not os.path.exists(f"{BASE_PATH}/{LIB_PATH}"):
         os.mkdir(f"{BASE_PATH}/{LIB_PATH}")
 
     WHOLE_LIB_PATh = f"{BASE_PATH}/{LIB_PATH}/{args.name}"
-    if os.path.exists(WHOLE_LIB_PATh):
+    if not os.path.exists(WHOLE_LIB_PATh):
         os.mkdir(WHOLE_LIB_PATh)
 
     git_repo = args.url
