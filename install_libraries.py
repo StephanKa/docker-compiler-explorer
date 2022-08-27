@@ -17,7 +17,7 @@ def parse_args():
 
 if __name__ == '__main__':
     args = parse_args()
-    print(f"{args.name} - {args.url} - {args.version}")
+    print(f"{args.name} - {args.url} - {args.versions}")
     if not os.path.exists(BASE_PATH):
         os.mkdir(BASE_PATH)
 
