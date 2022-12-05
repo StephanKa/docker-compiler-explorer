@@ -64,6 +64,4 @@ libs:
     description: Modern logger using fmt library
     url: https://github.com/gabime/spdlog.git
     versions:
-      - 8.1.1
-      - 9.0.0
-      - 9.1.0
+      - v1.11.0
