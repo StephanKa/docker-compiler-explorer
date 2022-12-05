@@ -4,7 +4,7 @@ services:
   compiler-explorer:
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: generated/Dockerfile
     image: docker-compiler-explorer:latest
     container_name: compiler-explorer
     ports:

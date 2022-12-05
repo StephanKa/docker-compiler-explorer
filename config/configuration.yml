@@ -1,0 +1,69 @@
+compiler:
+  clang:
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+  gcc:
+    - 9
+    - 10
+    - 11
+libs:
+  fmt:
+    name: FMT
+    description: A modern formatting library
+    url: https://github.com/fmtlib/fmt.git
+    versions:
+      - 8.1.1
+      - 9.0.0
+      - 9.1.0
+  sml:
+    name: Boost SML
+    description: A modern state machine library
+    url: https://github.com/boost-ext/sml.git
+    versions:
+      - 1.1.5
+      - 1.1.6
+  catch2:
+    name: Catch2
+    description: A modern unit test framework
+    url: https://github.com/catchorg/Catch2.git
+    versions:
+      - v2.13.9
+      - v3.1.0
+      - v3.2.0
+  ctre:
+    name: CTRE
+    description: Compile-time regular expressions
+    url: https://github.com/hanickadot/compile-time-regular-expressions.git
+    versions:
+      - v3.7.1
+  expected_lite:
+    description: expected_lite
+    url: https://github.com/martinmoene/expected-lite.git
+    versions:
+      - v0.6.2
+  googletest:
+    description: Googletest unit test framework
+    url: https://github.com/google/googletest.git
+    versions:
+      - v1.12.1
+  hfsm2:
+    description: Hierarchy Finite State Machine
+    url: https://github.com/andrew-gresyk/HFSM2.git
+    versions:
+      - 2.2.1
+  nlohmann_json:
+    name: nlohman JSON
+    description: Modern C++ JSON
+    url: https://github.com/nlohmann/json.git
+    versions:
+      - v3.11.2
+  spdlog:
+    description: Modern logger using fmt library
+    url: https://github.com/gabime/spdlog.git
+    versions:
+      - 8.1.1
+      - 9.0.0
+      - 9.1.0

@@ -1,0 +1,56 @@
+# Default settings for C++
+compilers=&gcc:&clang
+
+group.gcc.compilers=g{{ gcc | join(':g')}}:gdefault
+{% for version in gcc %}
+compiler.g{{ version }}.exe=/usr/bin/g++-{{ version }}
+compiler.g{{ version }}.name=g++ {{ version }}
+{%- if loop.last %}
+compiler.gdefault.exe=/usr/bin/g++-{{ version }}
+compiler.gdefault.name=g++ default ({{ version }})
+{%- endif %}
+{%- endfor %}
+
+group.clang.compilers=clang{{ clang | join(':clang')}}:clangdefault
+group.clang.intelAsm=-mllvm --x86-asm-syntax=intel
+group.clang.compilerType=clang
+{% for version in clang %}
+compiler.clang{{ version }}.exe=/usr/bin/clang++-{{ version }}
+compiler.clang{{ version }}.name=clang {{ version }}
+compiler.clang{{ version }}x86.exe=/usr/bin/clang++-{{ version }}
+compiler.clang{{ version }}x86.name=clang {{ version }} x86
+compiler.clang{{ version }}x86.options=-std=c++17 -Wall -Wextra -Wshadow -O3 -m32 -march=i386
+{%- if loop.last %}
+compiler.clangdefault.exe=/usr/bin/clang++-{{ version }}
+compiler.clangdefault.name=clang default ({{ version }})
+{%- endif %}
+{%- endfor %}
+
+defaultCompiler=gdefault
+postProcess=
+demangler=c++filt
+demanglerType=cpp
+objdumper=objdump
+options=
+supportsBinary=true
+binaryHideFuncRe=^(__.*|_(init|start|fini)|(de)?register_tm_clones|call_gmon_start|frame_dummy|\.plt.*|_dl_relocate_static_pie)$
+needsMulti=false
+stubRe=\bmain\b
+stubText=int main(){return 0;/*stub provided by Compiler Explorer*/}
+supportsLibraryCodeFilter=true
+
+#################################
+#################################
+# Installed libs (See c++.amazon.properties for a scheme of libs group)
+libs={{ libraries | join(":") }}
+
+{% for lib in libraries %}
+libs.{{ lib }}.name={{ lib }}
+libs.{{ lib }}.description={{ libraries[lib].description }}
+libs.{{ lib }}.versions={{ libraries[lib].versions | join(':') | replace('.', '') }}
+libs.{{ lib }}.url={{ libraries[lib].url }}
+{%- for version in libraries[lib].versions %}
+libs.{{ lib }}.versions.{{ version | replace('.', '') }}.version={{ version }}
+libs.{{ lib }}.versions.{{ version | replace('.', '') }}.path=/compiler-explorer/libs/{{ lib }}/{{ version }}/include
+{%- endfor %}
+{% endfor %}

@@ -24,14 +24,14 @@ if __name__ == '__main__':
     if not os.path.exists(f'{BASE_PATH}/{LIB_PATH}'):
         os.mkdir(f'{BASE_PATH}/{LIB_PATH}')
 
-    WHOLE_LIB_PATh = f'{BASE_PATH}/{LIB_PATH}/{args.name}'
-    if not os.path.exists(WHOLE_LIB_PATh):
-        os.mkdir(WHOLE_LIB_PATh)
+    WHOLE_LIB_PATH = f'{BASE_PATH}/{LIB_PATH}/{args.name}'
+    if not os.path.exists(WHOLE_LIB_PATH):
+        os.mkdir(WHOLE_LIB_PATH)
 
     git_repo = args.url
     if not git_repo.endswith('.git'):
         git_repo = f'{git_repo}.git'
 
-    os.chdir(WHOLE_LIB_PATh)
+    os.chdir(WHOLE_LIB_PATH)
     for version in args.versions:
         subprocess.call(['git', 'clone', '--single-branch', '--branch', f'{version}', f'{git_repo}', f'{version}'])

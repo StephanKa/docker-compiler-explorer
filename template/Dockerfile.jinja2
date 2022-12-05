@@ -1,0 +1,60 @@
+FROM ubuntu:20.04
+
+LABEL maintainer="Stephan Kantelberg <stephan.kantelberg@zuehlke.com>"
+
+ARG DEB_COMPILERS="g++{{ gcc | join(' g++') }}"
+ARG EXTRA_CLANG_COMPILERS="{{ clang | join(' ') }}"
+
+EXPOSE 10240
+
+RUN echo "*** Installing compiler required packages ***" \
+    && export DEBIAN_FRONTEND=noninteractive  \
+    && apt-get update \
+    && apt-get install -y \
+       wget \
+       gnupg2 \
+       lsb-release \
+       apt-utils \
+       software-properties-common
+
+ADD scripts/install_compilers.sh /install_compilers.sh
+ADD scripts/install_libraries.py /install_libraries.py
+
+RUN echo "*** Installing C++ Compilers ***" \
+    && chmod +x /install_compilers.sh \
+    && sh /install_compilers.sh "${DEB_COMPILERS}" "${EXTRA_CLANG_COMPILERS}"
+
+
+RUN echo "*** Installing Compiler Explorer ***" \
+    && DEBIAN_FRONTEND=noninteractive apt-get update \
+    && apt-get install -y curl \
+    && curl -sL https://deb.nodesource.com/setup_16.x | bash - \
+    && apt-get install -y \
+       ca-certificates \
+       nodejs \
+       make \
+       git \
+       python3 \
+    && apt-get autoremove --purge -y \
+    && apt-get autoclean -y \
+    && rm -rf /var/cache/apt/* /tmp/* \
+    && git clone https://github.com/compiler-explorer/compiler-explorer.git /compiler-explorer \
+    && cd /compiler-explorer \
+    && echo "Add missing dependencies" \
+    && npm i @sentry/node \
+    && npm run webpack
+
+RUN echo "*** Install libs ***" \
+    {%- for lib in libraries %}
+    && echo "Installing {{ lib }}" \
+    && python3 /install_libraries.py -n {{ lib }} -u {{ libraries[lib].url }} -v {{ libraries[lib].versions | join(' ') }} \
+    {%- endfor %}
+    && echo "Libraries installed!"
+
+ADD cpp.properties /compiler-explorer/etc/config/c++.local.properties
+
+WORKDIR /compiler-explorer
+
+ENTRYPOINT [ "make" ]
+
+CMD ["run"]

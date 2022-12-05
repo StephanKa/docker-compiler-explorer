@@ -1,0 +1,30 @@
+# docker-compiler-explorer
+
+[![Docker Build Compiler Explorer](https://github.com/StephanKa/docker-compiler-explorer/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/StephanKa/docker-compiler-explorer/actions/workflows/build.yaml)
+
+## Usage
+
+```bash
+git clone https://github.com/StephanKa/docker-compiler-explorer
+cd docker-compiler-explorer
+python3 scripts/generator.py
+docker-compse up -d
+```
+
+## Compiler & Version
+
+| Compiler | Version |
+|----------|---------|
+{%- for comp in compiler %}
+| {{ comp | title() }} | {{ compiler[comp] | join('<br/>') }} |
+{%- endfor %}
+
+## Libraries
+
+| Library | Version |
+|----------|---------|
+{%- for lib in libraries %}
+| [{% if 'name' in libraries[lib] %} {{ libraries[lib].name }} {% else %} {{ lib }} {% endif %}]({{ libraries[lib].url }}) | {{ libraries[lib].versions | join('<br/>') }} |
+{%- endfor %}
+
+## To-Do
