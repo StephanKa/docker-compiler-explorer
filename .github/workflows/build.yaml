@@ -16,4 +16,4 @@ jobs:
     - name: Generate files
       run: python3 scripts/generator.py
     - name: Build Dockerfile
-      run: docker build . --file Dockerfile -t docker-compiler-explorer
+      run: docker build . --file generated/Dockerfile -t docker-compiler-explorer
