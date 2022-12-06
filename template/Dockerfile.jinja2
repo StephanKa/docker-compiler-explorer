@@ -51,7 +51,7 @@ RUN echo "*** Install libs ***" \
     {%- endfor %}
     && echo "Libraries installed!"
 
-ADD cpp.properties /compiler-explorer/etc/config/c++.local.properties
+ADD generated/cpp.properties /compiler-explorer/etc/config/c++.local.properties
 
 WORKDIR /compiler-explorer
 
