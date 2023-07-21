@@ -4,10 +4,10 @@ compilers=&gcc:&clang
 group.gcc.compilers=g{{ gcc | join(':g')}}:gdefault
 {% for version in gcc %}
 compiler.g{{ version }}.exe=/usr/bin/g++-{{ version }}
-compiler.g{{ version }}.name=g++ {{ version }}
+compiler.g{{ version }}.name=GCC {{ version }} x86
 {%- if loop.last %}
 compiler.gdefault.exe=/usr/bin/g++-{{ version }}
-compiler.gdefault.name=g++ default ({{ version }})
+compiler.gdefault.name=GCC default ({{ version }})
 {%- endif %}
 {%- endfor %}
 
@@ -16,13 +16,11 @@ group.clang.intelAsm=-mllvm --x86-asm-syntax=intel
 group.clang.compilerType=clang
 {% for version in clang %}
 compiler.clang{{ version }}.exe=/usr/bin/clang++-{{ version }}
-compiler.clang{{ version }}.name=clang {{ version }}
-compiler.clang{{ version }}x86.exe=/usr/bin/clang++-{{ version }}
-compiler.clang{{ version }}x86.name=clang {{ version }} x86
-compiler.clang{{ version }}x86.options=-std=c++17 -Wall -Wextra -Wshadow -O3 -m32 -march=i386
+compiler.clang{{ version }}.name=Clang {{ version }} x86
+compiler.clang{{ version }}.options=-std=c++17 -Wall -Wextra -Wshadow -O3 -m32 -march=i386
 {%- if loop.last %}
 compiler.clangdefault.exe=/usr/bin/clang++-{{ version }}
-compiler.clangdefault.name=clang default ({{ version }})
+compiler.clangdefault.name=Clang default ({{ version }})
 {%- endif %}
 {%- endfor %}
 

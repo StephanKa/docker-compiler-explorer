@@ -1,7 +1,5 @@
 compiler:
   clang:
-    - 11
-    - 12
     - 13
     - 14
     - 15
@@ -18,6 +16,7 @@ libs:
       - 8.1.1
       - 9.0.0
       - 9.1.0
+      - 10.0.0
   sml:
     name: Boost SML
     description: A modern state machine library
@@ -25,6 +24,7 @@ libs:
     versions:
       - 1.1.5
       - 1.1.6
+      - 1.1.8
   catch2:
     name: Catch2
     description: A modern unit test framework
@@ -33,6 +33,7 @@ libs:
       - v2.13.9
       - v3.1.0
       - v3.2.0
+      - v3.4.0
   ctre:
     name: CTRE
     description: Compile-time regular expressions
@@ -49,6 +50,7 @@ libs:
     url: https://github.com/google/googletest.git
     versions:
       - v1.12.1
+      - v.1.13.0
   hfsm2:
     description: Hierarchy Finite State Machine
     url: https://github.com/andrew-gresyk/HFSM2.git
@@ -65,3 +67,4 @@ libs:
     url: https://github.com/gabime/spdlog.git
     versions:
       - v1.11.0
+      - v1.12.0

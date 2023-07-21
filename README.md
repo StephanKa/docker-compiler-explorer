@@ -16,21 +16,21 @@ docker-compse up -d
 
 | Compiler | Version |
 |----------|---------|
-| Clang | 11<br/>12<br/>13<br/>14<br/>15 |
+| Clang | 13<br/>14<br/>15 |
 | Gcc | 9<br/>10<br/>11 |
 
 ## Libraries
 
 | Library | Version |
 |----------|---------|
-| [ FMT ](https://github.com/fmtlib/fmt.git) | 8.1.1<br/>9.0.0<br/>9.1.0 |
-| [ Boost SML ](https://github.com/boost-ext/sml.git) | 1.1.5<br/>1.1.6 |
-| [ Catch2 ](https://github.com/catchorg/Catch2.git) | v2.13.9<br/>v3.1.0<br/>v3.2.0 |
+| [ FMT ](https://github.com/fmtlib/fmt.git) | 8.1.1<br/>9.0.0<br/>9.1.0<br/>10.0.0 |
+| [ Boost SML ](https://github.com/boost-ext/sml.git) | 1.1.5<br/>1.1.6<br/>1.1.8 |
+| [ Catch2 ](https://github.com/catchorg/Catch2.git) | v2.13.9<br/>v3.1.0<br/>v3.2.0<br/>v3.4.0 |
 | [ CTRE ](https://github.com/hanickadot/compile-time-regular-expressions.git) | v3.7.1 |
 | [ expected_lite ](https://github.com/martinmoene/expected-lite.git) | v0.6.2 |
-| [ googletest ](https://github.com/google/googletest.git) | v1.12.1 |
+| [ googletest ](https://github.com/google/googletest.git) | v1.12.1<br/>v.1.13.0 |
 | [ hfsm2 ](https://github.com/andrew-gresyk/HFSM2.git) | 2.2.1 |
 | [ nlohman JSON ](https://github.com/nlohmann/json.git) | v3.11.2 |
-| [ spdlog ](https://github.com/gabime/spdlog.git) | 8.1.1<br/>9.0.0<br/>9.1.0 |
+| [ spdlog ](https://github.com/gabime/spdlog.git) | v1.11.0<br/>v1.12.0 |
 
 ## To-Do
