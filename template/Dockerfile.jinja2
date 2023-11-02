@@ -3,7 +3,7 @@ FROM ubuntu:22.04
 LABEL maintainer="Stephan Kantelberg <stephan.kantelberg@zuehlke.com>"
 
 ARG DEB_COMPILERS="g++-{{ gcc | join(' g++-') }}"
-ARG EXTRA_CLANG_COMPILERS="{{ clang | join(' ') }}"
+ARG EXTRA_CLANG_COMPILERS="{{ clang.keys() | join(' ') }}"
 
 EXPOSE 10240
 
@@ -15,6 +15,7 @@ RUN echo "*** Installing compiler required packages ***" \
        gnupg2 \
        lsb-release \
        apt-utils \
+       ninja-build \
        software-properties-common
 
 ADD scripts/install_compilers.sh /install_compilers.sh
@@ -50,6 +51,28 @@ RUN echo "*** Install libs ***" \
     && python3 /install_libraries.py -n {{ lib }} -u {{ libraries[lib].url }} -v {{ libraries[lib].versions | join(' ') }} \
     {%- endfor %}
     && echo "Libraries installed!"
+
+{% if 'cmake' in tools.keys() %}
+RUN mkdir -p /tools/cmake && cd /tools/cmake \
+    && wget https://github.com/Kitware/CMake/releases/download/v{{ tools.cmake }}/cmake-{{ tools.cmake }}-linux-x86_64.sh  \
+    && chmod +x cmake-{{ tools.cmake }}-linux-x86_64.sh  \
+    && ./cmake-{{ tools.cmake }}-linux-x86_64.sh --include-subdir --skip-license \
+    && rm cmake-{{ tools.cmake }}-linux-x86_64.sh \
+    && export PATH="${PATH}:/tools/cmake/cmake-{{ tools.cmake }}-linux-x86_64/bin/:"
+{%- endif %}
+
+{% for tool, version in tools.items() %}
+{%- if 'iwyu' == tool %}
+RUN mkdir iwyu && cd iwyu \
+    && apt install libclang-{{ version }}-dev \
+    && git clone --branch clang_{{ version }} https://github.com/include-what-you-use/include-what-you-use.git \
+    && mkdir build && cd build \
+    && cmake -G "Ninja" -DCMAKE_PREFIX_PATH=/usr/lib/llvm-{{ version }} ../include-what-you-use \
+    && ninja install \
+    && cd ../.. \
+    && rm -rf iwyu
+{%- endif %}
+{%- endfor %}
 
 ADD generated/cpp.properties /compiler-explorer/etc/config/c++.local.properties
 

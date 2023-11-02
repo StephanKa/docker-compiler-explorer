@@ -1,12 +1,18 @@
 compiler:
   clang:
-    - 13
-    - 14
-    - 15
+    13: 11
+    14: 11
+    15: 12
+    16: 12
+    17: 12
   gcc:
     - 9
     - 10
     - 11
+    - 12
+tools:
+  iwyu: 16 # release only for clang 16
+  cmake: 3.26.3
 libs:
   fmt:
     name: FMT

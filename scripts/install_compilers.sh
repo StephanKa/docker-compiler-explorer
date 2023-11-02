@@ -17,6 +17,7 @@ echo "Installing ${CLANG_PACKAGES}"
 for version in ${CLANG_PACKAGES}
 do
     /tmp/llvm.sh $version
+    apt install clang-tidy-$version clang-format-$version
 done
 
 apt-get autoremove --purge -y

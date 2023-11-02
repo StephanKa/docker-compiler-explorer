@@ -11,16 +11,40 @@ compiler.gdefault.name=GCC default ({{ version }})
 {%- endif %}
 {%- endfor %}
 
-group.clang.compilers=clang{{ clang | join(':clang')}}:clangdefault
+group.clang.compilers=clang{{ clang.keys() | join(':clang')}}:clangdefault
 group.clang.intelAsm=-mllvm --x86-asm-syntax=intel
 group.clang.compilerType=clang
-{% for version in clang %}
+{% for version, toolchain in clang.items() %}
 compiler.clang{{ version }}.exe=/usr/bin/clang++-{{ version }}
 compiler.clang{{ version }}.name=Clang {{ version }} x86
 compiler.clang{{ version }}.options=-std=c++17 -Wall -Wextra -Wshadow -O3 -m32 -march=i386
+compiler.clang{{ version }}.options=--gcc-toolchain=/usr/lib/gcc/x86_64-linux-gnu/{{ toolchain }}
+
+tools.clangtidy{{ version }}.exe=/usr/bin/clang-tidy-{{ version }}
+tools.clangtidy{{ version }}.name=clang-tidy {{ version }}
+tools.clangtidy{{ version }}.type=independent
+tools.clangtidy{{ version }}.class=clang-tidy-tool
+tools.clangtidy{{ version }}.stdinHint=disabled
+
+tools.clangquery{{ version }}.exe=/usr/bin/clang-query-{{ version }}
+tools.clangquery{{ version }}.name=clang-query {{ version }}
+tools.clangquery{{ version }}.type=independent
+tools.clangquery{{ version }}.class=clang-query-tool
+tools.clangquery{{ version }}.stdinHint=Query commands
+
+tools.clangformat{{ version }}.exe=/usr/bin/clang-format-{{ version }}
+tools.clangformat{{ version }}.name=clang-format {{ version }}
+tools.clangformat{{ version }}.type=independent
+tools.clangformat{{ version }}.class=clang-format-tool
+
 {%- if loop.last %}
 compiler.clangdefault.exe=/usr/bin/clang++-{{ version }}
 compiler.clangdefault.name=Clang default ({{ version }})
+tools.clangtidydefault.exe=/usr/bin/clang-tidy-{{ version }}
+tools.clangtidydefault.name=clang-tidy {{ version }} (default)
+tools.clangtidydefault.type=independent
+tools.clangtidydefault.class=clang-tidy-tool
+tools.clangtidydefault.stdinHint=disabled
 {%- endif %}
 {%- endfor %}
 
@@ -37,6 +61,40 @@ stubRe=\bmain\b
 stubText=int main(){return 0;/*stub provided by Compiler Explorer*/}
 supportsLibraryCodeFilter=true
 
+tools.ldd.name=ldd
+tools.ldd.exe=/usr/bin/ldd
+tools.ldd.type=postcompilation
+tools.ldd.class=readelf-tool
+tools.ldd.exclude=djggp
+tools.ldd.stdinHint=disabled
+
+tools.readelf.name=readelf (default)
+tools.readelf.exe=/usr/bin/readelf
+tools.readelf.type=postcompilation
+tools.readelf.class=readelf-tool
+tools.readelf.exclude=djggp
+tools.readelf.stdinHint=disabled
+
+tools.nm.name=nm (default)
+tools.nm.exe=/usr/bin/nm
+tools.nm.type=postcompilation
+tools.nm.class=nm-tool
+tools.nm.exclude=djggp
+tools.nm.stdinHint=disabled
+
+tools.strings.exe=/usr/bin/strings
+tools.strings.name=strings
+tools.strings.type=postcompilation
+tools.strings.class=strings-tool
+tools.strings.exclude=djggp
+tools.strings.stdinHint=disabled
+
+{% if 'iwyu' in tools.keys() %}
+tools.iwyu.exe=/usr/local/bin/include-what-you-use
+tools.iwyu.name=include-what-you-use
+tools.iwyu.type=independent
+tools.iwyu.class=compiler-dropin-tool
+{% endif %}
 #################################
 #################################
 # Installed libs (See c++.amazon.properties for a scheme of libs group)

@@ -15,7 +15,8 @@ def main():
 
     # generate Dockerfile
     template = env.get_template('Dockerfile.jinja2')
-    output = template.render(gcc=data_loaded['compiler']['gcc'], clang=data_loaded['compiler']['clang'], libraries=data_loaded['libs'])
+    output = template.render(gcc=data_loaded['compiler']['gcc'], clang=data_loaded['compiler']['clang'], libraries=data_loaded['libs'],
+                             tools=data_loaded['tools'])
 
     if not os.path.exists(f'{os.getcwd()}/generated'):
         os.mkdir(f'{os.getcwd()}/generated')
@@ -24,7 +25,8 @@ def main():
 
     # generate cpp.properties
     template = env.get_template('cpp.properties.jinja2')
-    output = template.render(gcc=data_loaded['compiler']['gcc'], clang=data_loaded['compiler']['clang'], libraries=data_loaded['libs'])
+    output = template.render(gcc=data_loaded['compiler']['gcc'], clang=data_loaded['compiler']['clang'], libraries=data_loaded['libs'],
+                             tools=data_loaded['tools'])
 
     if not os.path.exists(f'{os.getcwd()}/generated'):
         os.mkdir(f'{os.getcwd()}/generated')
