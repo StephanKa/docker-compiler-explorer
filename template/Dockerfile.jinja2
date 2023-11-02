@@ -58,7 +58,7 @@ RUN mkdir -p /tools/cmake && cd /tools/cmake \
     && chmod +x cmake-{{ tools.cmake }}-linux-x86_64.sh  \
     && ./cmake-{{ tools.cmake }}-linux-x86_64.sh --include-subdir --skip-license \
     && rm cmake-{{ tools.cmake }}-linux-x86_64.sh \
-    && export PATH="${PATH}:/tools/cmake/cmake-{{ tools.cmake }}-linux-x86_64/bin/:"
+ENV PATH="${PATH}:/tools/cmake/cmake-{{ tools.cmake }}-linux-x86_64/bin/:"
 {%- endif %}
 
 {% for tool, version in tools.items() %}
