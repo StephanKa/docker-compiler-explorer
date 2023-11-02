@@ -57,7 +57,7 @@ RUN mkdir -p /tools/cmake && cd /tools/cmake \
     && wget https://github.com/Kitware/CMake/releases/download/v{{ tools.cmake }}/cmake-{{ tools.cmake }}-linux-x86_64.sh  \
     && chmod +x cmake-{{ tools.cmake }}-linux-x86_64.sh  \
     && ./cmake-{{ tools.cmake }}-linux-x86_64.sh --include-subdir --skip-license \
-    && rm cmake-{{ tools.cmake }}-linux-x86_64.sh \
+    && rm cmake-{{ tools.cmake }}-linux-x86_64.sh
 ENV PATH="${PATH}:/tools/cmake/cmake-{{ tools.cmake }}-linux-x86_64/bin/:"
 {%- endif %}
 
