@@ -102,6 +102,9 @@ libs={{ libraries | join(":") }}
 
 {% for lib in libraries %}
 libs.{{ lib }}.name={{ lib }}
+{% if 'staticliblink' in libraries[lib] -%}
+libs.{{ lib }}.staticliblink={{ libraries[lib].staticliblink }}
+{%- endif %}
 libs.{{ lib }}.description={{ libraries[lib].description }}
 libs.{{ lib }}.versions={{ libraries[lib].versions | join(':') | replace('.', '') }}
 libs.{{ lib }}.url={{ libraries[lib].url }}

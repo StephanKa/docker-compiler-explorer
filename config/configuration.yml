@@ -18,6 +18,7 @@ libs:
     name: FMT
     description: A modern formatting library
     url: https://github.com/fmtlib/fmt.git
+    staticliblink: fmtd
     versions:
       - 8.1.1
       - 9.0.0
