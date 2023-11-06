@@ -34,6 +34,8 @@ RUN echo "*** Installing Compiler Explorer ***" \
        ca-certificates \
        nodejs \
        make \
+       gcc \
+       g++ \
        git \
        python3 \
     && apt-get autoremove --purge -y \
@@ -45,13 +47,6 @@ RUN echo "*** Installing Compiler Explorer ***" \
     && npm i @sentry/node \
     && npm run webpack
 
-RUN echo "*** Install libs ***" \
-    {%- for lib in libraries %}
-    && echo "Installing {{ lib }}" \
-    && python3 /install_libraries.py -n {{ lib }} -u {{ libraries[lib].url }} -v {{ libraries[lib].versions | join(' ') }} \
-    {%- endfor %}
-    && echo "Libraries installed!"
-
 {% if 'cmake' in tools.keys() %}
 RUN mkdir -p /tools/cmake && cd /tools/cmake \
     && wget https://github.com/Kitware/CMake/releases/download/v{{ tools.cmake }}/cmake-{{ tools.cmake }}-linux-x86_64.sh  \
@@ -60,6 +55,13 @@ RUN mkdir -p /tools/cmake && cd /tools/cmake \
     && rm cmake-{{ tools.cmake }}-linux-x86_64.sh
 ENV PATH="${PATH}:/tools/cmake/cmake-{{ tools.cmake }}-linux-x86_64/bin/:"
 {%- endif %}
+
+RUN echo "*** Install libs ***" \
+    {%- for lib in libraries %}
+    && echo "Installing {{ lib }}" \
+    && python3 /install_libraries.py {% if libraries[lib].staticliblink %} -i {% endif %} -n {{ lib }} -u {{ libraries[lib].url }} -v {{ libraries[lib].versions | join(' ') }} \
+    {%- endfor %}
+    && echo "Libraries installed!"
 
 {% for tool, version in tools.items() %}
 {%- if 'iwyu' == tool %}
