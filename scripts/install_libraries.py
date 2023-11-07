@@ -40,7 +40,10 @@ if __name__ == '__main__':
         os.chdir(WHOLE_LIB_PATH)
         subprocess.call(['git', 'clone', '--single-branch', '--branch', f'{version}', f'{git_repo}', f'{version}'])
         if args.install_lib:
-            os.makedirs(f'{WHOLE_LIB_PATH}/{version}/build')
-            os.chdir(f'{WHOLE_LIB_PATH}/{version}/build')
-            subprocess.call(['cmake', '-DCMAKE_POSITION_INDEPENDENT_CODE=TRUE', '..'])
+            version_path = f'{WHOLE_LIB_PATH}/{version}'
+            os.makedirs(f'{version_path}/build', exist_ok=True)
+            os.makedirs(f'{version_path}/lib', exist_ok=True)
+            os.chdir(f'{version_path}/build')
+            subprocess.call(['cmake', '-DCMAKE_POSITION_INDEPENDENT_CODE=TRUE', f'-DCMAKE_INSTALL_PREFIX={version_path}/lib', '-DCMAKE_BUILD_TYPE=Debug','..'])
             subprocess.call(['make', 'install'])
+            subprocess.call(['rm', '-rf', f'{version_path}/build'])

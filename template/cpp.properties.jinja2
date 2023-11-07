@@ -111,5 +111,8 @@ libs.{{ lib }}.url={{ libraries[lib].url }}
 {%- for version in libraries[lib].versions %}
 libs.{{ lib }}.versions.{{ version | replace('.', '') }}.version={{ version }}
 libs.{{ lib }}.versions.{{ version | replace('.', '') }}.path=/compiler-explorer/libs/{{ lib }}/{{ version }}/include
+{% if 'staticliblink' in libraries[lib] -%}
+libs.{{ lib }}.versions.{{ version | replace('.', '') }}.libpath=/compiler-explorer/libs/{{ lib }}/{{ version }}/lib/lib
+{%- endif %}
 {%- endfor %}
 {% endfor %}
