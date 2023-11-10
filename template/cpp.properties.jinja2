@@ -18,7 +18,7 @@ group.clang.compilerType=clang
 compiler.clang{{ version }}.exe=/usr/bin/clang++-{{ version }}
 compiler.clang{{ version }}.name=Clang {{ version }} x86
 compiler.clang{{ version }}.options=-std=c++17 -Wall -Wextra -Wshadow -O3 -m32 -march=i386
-compiler.clang{{ version }}.options=--gcc-install-dir=/usr/lib/gcc/x86_64-linux-gnu/{{ toolchain }}
+compiler.clang{{ version }}.options={% if toolchain %}--gcc-install-dir=/usr/lib/gcc/x86_64-linux-gnu/{{ toolchain }}{% else %}--gcc-toolchain=/usr{% endif %}
 
 tools.clangtidy{{ version }}.exe=/usr/bin/clang-tidy-{{ version }}
 tools.clangtidy{{ version }}.name=clang-tidy {{ version }}
