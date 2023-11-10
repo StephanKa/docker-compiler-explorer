@@ -21,19 +21,28 @@ docker-compse up -d
 
 ## Libraries
 
-| Library | Version |
+| Library | Version | Type | Description |
+|----------|---------|-----|-----|
+| [ FMT ](https://github.com/fmtlib/fmt.git) | 8.1.1<br/>9.1.0<br/>10.1.1 | static | A modern formatting library |
+| [ Boost SML ](https://github.com/boost-ext/sml.git) | 1.1.9 | header-onldy | A modern state machine library |
+| [ Catch2 ](https://github.com/catchorg/Catch2.git) | v2.13.9<br/>v3.4.0 | header-onldy | A modern unit test framework |
+| [ CTRE ](https://github.com/hanickadot/compile-time-regular-expressions.git) | v3.8.1 | header-onldy | Compile-time regular expressions |
+| [ expected_lite ](https://github.com/martinmoene/expected-lite.git) | v0.6.3 | header-onldy | expected_lite |
+| [ googletest ](https://github.com/google/googletest.git) | v1.12.1<br/>v1.13.0<br/>v1.14.0 | header-onldy | Googletest unit test framework |
+| [ hfsm2 ](https://github.com/andrew-gresyk/HFSM2.git) | 2.2.1 | header-onldy | Hierarchy Finite State Machine |
+| [ nlohman JSON ](https://github.com/nlohmann/json.git) | v3.11.2 | header-onldy | Modern C++ JSON |
+| [ spdlog ](https://github.com/gabime/spdlog.git) | v1.12.0 | header-onldy | Modern logger using fmt library |
+| [ benchmark ](https://github.com/google/benchmark.git) | v1.8.3 | static | A library to benchmark code snippets, similar to unit tests. |
+| [ cthash ](https://github.com/hanickadot/cthash.git) | main | header-onldy | This library is constexpr implementation of SHA-2, SHA-3, and xxhash family of hashes. |
+| [ magicenum ](https://github.com/Neargye/magic_enum.git) | v0.9.3 | header-onldy | Header-only C++17 library provides static reflection for enums, work with any enum type without any macro or boilerplate code. |
+| [ spy ](https://github.com/jfalcou/spy.git) | 1.0.0 | header-onldy | Detection and versioning of operating systems, compilers, architecture and other element are traditionally done using preprocessor macros. |
+| [ expected ](https://github.com/TartanLlama/expected.git) | v1.1.0 | header-onldy | Single header implementation of std::expected with functional-style extensions. |
+
+## Tools
+
+| Name | Version |
 |----------|---------|
-| [ FMT ](https://github.com/fmtlib/fmt.git) | 8.1.1<br/>9.1.0<br/>10.1.1 |
-| [ Boost SML ](https://github.com/boost-ext/sml.git) | 1.1.9 |
-| [ Catch2 ](https://github.com/catchorg/Catch2.git) | v2.13.9<br/>v3.4.0 |
-| [ CTRE ](https://github.com/hanickadot/compile-time-regular-expressions.git) | v3.8.1 |
-| [ expected_lite ](https://github.com/martinmoene/expected-lite.git) | v0.6.3 |
-| [ googletest ](https://github.com/google/googletest.git) | v1.12.1<br/>v1.13.0<br/>v1.14.0 |
-| [ hfsm2 ](https://github.com/andrew-gresyk/HFSM2.git) | 2.2.1 |
-| [ nlohman JSON ](https://github.com/nlohmann/json.git) | v3.11.2 |
-| [ spdlog ](https://github.com/gabime/spdlog.git) | v1.12.0 |
-| [ benchmark ](https://github.com/google/benchmark.git) | v1.8.3 |
-| [ cthash ](https://github.com/hanickadot/cthash.git) | main |
-| [ magicenum ](https://github.com/jfalcou/spy.git) | 1.0.0 |
+| iwyu | 17 |
+| cmake | 3.27.7 |
 
 ## To-Do

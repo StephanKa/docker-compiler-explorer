@@ -22,10 +22,18 @@ docker-compse up -d
 
 ## Libraries
 
-| Library | Version |
-|----------|---------|
+| Library | Version | Type | Description |
+|----------|---------|-----|-----|
 {%- for lib in libraries %}
-| [{% if 'name' in libraries[lib] %} {{ libraries[lib].name }} {% else %} {{ lib }} {% endif %}]({{ libraries[lib].url }}) | {{ libraries[lib].versions | join('<br/>') }} |
+| [{% if 'name' in libraries[lib] %} {{ libraries[lib].name }} {% else %} {{ lib }} {% endif %}]({{ libraries[lib].url }}) | {{ libraries[lib].versions | join('<br/>') }} | {% if 'staticliblink' in libraries[lib] %}static{% else %}header-onldy{% endif %} | {{ libraries[lib].description }} |
+{%- endfor %}
+
+## Tools
+
+| Name | Version |
+|----------|---------|
+{%- for name, version in tools.items() %}
+| {{ name }} | {{ version }} |
 {%- endfor %}
 
 ## To-Do

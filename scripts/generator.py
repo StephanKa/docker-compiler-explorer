@@ -33,9 +33,8 @@ def main():
     with open(f'{os.getcwd()}/generated/cpp.properties', 'w') as f:
         f.write(output)
 
-    maximum_compiler_count = max([len(i) for i in data_loaded['compiler']])
     template = env.get_template('README.md.jinja2')
-    output = template.render(compiler=data_loaded['compiler'], libraries=data_loaded['libs'])
+    output = template.render(compiler=data_loaded['compiler'], libraries=data_loaded['libs'], tools=data_loaded['tools'])
 
     with open(f'{os.getcwd()}/README.md', 'w') as f:
         f.write(output)
