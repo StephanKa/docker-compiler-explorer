@@ -21,43 +21,39 @@ libs:
     staticliblink: fmtd
     versions:
       - 8.1.1
-      - 9.0.0
       - 9.1.0
-      - 10.0.0
+      - 10.1.1
   sml:
     name: Boost SML
     description: A modern state machine library
     url: https://github.com/boost-ext/sml.git
     versions:
-      - 1.1.5
-      - 1.1.6
-      - 1.1.8
+      - 1.1.9
   catch2:
     name: Catch2
     description: A modern unit test framework
     url: https://github.com/catchorg/Catch2.git
     versions:
       - v2.13.9
-      - v3.1.0
-      - v3.2.0
       - v3.4.0
   ctre:
     name: CTRE
     description: Compile-time regular expressions
     url: https://github.com/hanickadot/compile-time-regular-expressions.git
     versions:
-      - v3.7.1
+      - v3.8.1
   expected_lite:
     description: expected_lite
     url: https://github.com/martinmoene/expected-lite.git
     versions:
-      - v0.6.2
+      - v0.6.3
   googletest:
     description: Googletest unit test framework
     url: https://github.com/google/googletest.git
     versions:
       - v1.12.1
-      - v.1.13.0
+      - v1.13.0
+      - v1.14.0
   hfsm2:
     description: Hierarchy Finite State Machine
     url: https://github.com/andrew-gresyk/HFSM2.git
@@ -73,5 +69,25 @@ libs:
     description: Modern logger using fmt library
     url: https://github.com/gabime/spdlog.git
     versions:
-      - v1.11.0
       - v1.12.0
+  benchmark:
+    description: A library to benchmark code snippets, similar to unit tests.
+    url: https://github.com/google/benchmark.git
+    staticliblink: benchmark
+    versions:
+      - v1.8.3
+  cthash:
+    description: This library is constexpr implementation of SHA-2, SHA-3, and xxhash family of hashes.
+    url: https://github.com/hanickadot/cthash.git
+    versions:
+      - main
+  magicenum:
+    description: Header-only C++17 library provides static reflection for enums, work with any enum type without any macro or boilerplate code.
+    url: https://github.com/Neargye/magic_enum.git
+    versions:
+      - v0.9.3
+  magicenum:
+    description: Detection and versioning of operating systems, compilers, architecture and other element are traditionally done using preprocessor macros.
+    url: https://github.com/jfalcou/spy.git
+    versions:
+      - 1.0.0
