@@ -11,8 +11,8 @@ compiler:
     - 11
     - 12
 tools:
-  iwyu: 16 # release only for clang 16
-  cmake: 3.26.3
+  iwyu: 17 # release only for clang 17
+  cmake: 3.27.7
 libs:
   fmt:
     name: FMT
@@ -86,8 +86,13 @@ libs:
     url: https://github.com/Neargye/magic_enum.git
     versions:
       - v0.9.3
-  magicenum:
+  spy:
     description: Detection and versioning of operating systems, compilers, architecture and other element are traditionally done using preprocessor macros.
     url: https://github.com/jfalcou/spy.git
     versions:
       - 1.0.0
+  expected:
+      description: Single header implementation of std::expected with functional-style extensions.
+      url: https://github.com/TartanLlama/expected.git
+      versions:
+        - v1.1.0
