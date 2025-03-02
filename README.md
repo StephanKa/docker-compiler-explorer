@@ -16,7 +16,7 @@ docker-compse up -d
 
 | Compiler | Version |
 |----------|---------|
-| Clang | 13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19 |
+| Clang | 17<br/>18<br/>19 |
 | Gcc | 9<br/>10<br/>11<br/>12<br/>13<br/>14 |
 
 ## Libraries
